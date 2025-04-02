@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> _demoImages = [
+    final List<String> demoImages = [
       'assets/icons/dashboard.png',
       'assets/icons/cart.png',
       'assets/icons/bag.png',
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       'assets/icons/exit.png',
     ];
 
-    final List<String> _demoTitles = [
+    final List<String> demoTitles = [
       'Dashboard',
       'Cart',
       'Bag',
@@ -51,65 +51,65 @@ class _HomePageState extends State<HomePage> {
     ];
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     return Scaffold(
-      body: Row(
-        children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 700),
-            curve: Curves.easeInOut,
-            width: isExpanded ? 250.0 : 70.0,
-            decoration: BoxDecoration(
-              color: themeNotifier.isDarkMode
-                  ? Colors.grey[300]
-                  : Colors.grey[300],
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            margin: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                if (!isExpanded) const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Row(
-                    mainAxisAlignment: isExpanded
-                        ? MainAxisAlignment.start
-                        : MainAxisAlignment.center,
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 700),
-                        curve: Curves.easeInOut,
-                        height: 10.0,
-                        width: isExpanded ? 10.0 : 10.0,
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(20.0),
+      body: SafeArea(
+        child: Row(
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 700),
+              curve: Curves.easeInOut,
+              width: isExpanded ? 250.0 : 70.0,
+              decoration: BoxDecoration(
+                color: themeNotifier.isDarkMode
+                    ? Colors.grey[300]
+                    : Colors.grey[300],
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              margin: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  if (!isExpanded) const SizedBox(height: 16),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                    child: Row(
+                      mainAxisAlignment: isExpanded
+                          ? MainAxisAlignment.start
+                          : MainAxisAlignment.center,
+                      children: [
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 700),
+                          curve: Curves.easeInOut,
+                          height: 10.0,
+                          width: isExpanded ? 10.0 : 10.0,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 5.0),
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 700),
-                        curve: Curves.easeInOut,
-                        height: 10.0,
-                        width: isExpanded ? 10.0 : 10.0,
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(20.0),
+                        const SizedBox(width: 5.0),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 700),
+                          curve: Curves.easeInOut,
+                          height: 10.0,
+                          width: isExpanded ? 10.0 : 10.0,
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 5.0),
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 700),
-                        curve: Curves.easeInOut,
-                        height: 10.0,
-                        width: isExpanded ? 10.0 : 10.0,
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(20.0),
+                        const SizedBox(width: 5.0),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 700),
+                          curve: Curves.easeInOut,
+                          height: 10.0,
+                          width: isExpanded ? 10.0 : 10.0,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      if (isExpanded)
-                        Expanded(
-                          child: IconButton(
+                        if (isExpanded) const Spacer(),
+                        if (isExpanded)
+                          IconButton(
                             onPressed: () {
                               themeNotifier.toggleTheme();
                             },
@@ -120,236 +120,197 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.black,
                             ),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16.0),
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 700),
-                  opacity: isExpanded ? 0.0 : 1.0,
-                  child: AnimatedContainer(
+                  const SizedBox(height: 16.0),
+                  AnimatedOpacity(
                     duration: const Duration(milliseconds: 700),
-                    curve: Curves.easeInOut,
-                    height: isExpanded ? 0.0 : 50.0,
-                    width: isExpanded ? 0.0 : 50.0,
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Center(
-                      child: AnimatedDefaultTextStyle(
-                        duration: Duration(milliseconds: 700),
-                        curve: Curves.easeInOut,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 2.0,
-                        ),
-                        child: Text(
-                          'iP',
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16.0 * 2),
-                ListView.builder(
-                  itemCount: _demoImages.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: isExpanded
-                          ? () {
-                              setState(() {
-                                _selectedIndex = index;
-                                textSize = 60.0;
-                              });
-                            }
-                          : null,
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(top: 16.0 * 2, left: 10.0),
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            color: isExpanded
-                                ? _selectedIndex == index
-                                    ? Colors.deepPurple.withOpacity(0.3)
-                                    : Colors.transparent
-                                : Colors.transparent,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(30.0),
-                              bottomLeft: Radius.circular(30.0),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  _demoImages[index],
-                                  height: isExpanded ? 20 : 20,
-                                  width: isExpanded ? 20 : 20,
-                                  color: isExpanded
-                                      ? _selectedIndex == index
-                                          ? Colors.black
-                                          : Colors.grey
-                                      : Colors.grey,
-                                ),
-                                const SizedBox(width: 16.0),
-                                if (isExpanded)
-                                  Expanded(
-                                    child: AnimatedOpacity(
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      opacity: isExpanded ? 1.0 : 0.0,
-                                      child: AnimatedDefaultTextStyle(
-                                        duration:
-                                            const Duration(milliseconds: 500),
-                                        curve: Curves.easeInOut,
-                                        overflow: TextOverflow.ellipsis,
-                                        softWrap: true,
-                                        style: TextStyle(
-                                          color: _selectedIndex == index
-                                              ? Colors.black
-                                              : Colors.black54,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: isExpanded ? 15 : 0,
-                                        ),
-                                        child: Text(
-                                          _demoTitles[index],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                const Spacer(),
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 700),
-                  curve: Curves.easeInOut,
-                  height: 150.0,
-                  width: isExpanded ? 220.0 : 60.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Center(
-                    child: ListView.builder(
-                        itemCount: 4,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                              left: isExpanded ? 16.0 : 20.0,
-                              top: 10.0,
-                            ),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 10.0,
-                                  backgroundImage:
-                                      NetworkImage(userImages[index]),
-                                ),
-                                const SizedBox(width: 16.0),
-                                AnimatedDefaultTextStyle(
-                                  duration: const Duration(milliseconds: 700),
-                                  curve: Curves.easeInOut,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: isExpanded ? 13 : 0,
-                                  ),
-                                  child: Text(
-                                    userNames[index],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                  ),
-                ),
-                AnimatedAlign(
-                  duration: const Duration(milliseconds: 800),
-                  curve: Curves.easeInOut,
-                  alignment:
-                      isExpanded ? Alignment.bottomRight : Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      height: 50.0,
-                      width: 50.0,
+                    opacity: isExpanded ? 0.0 : 1.0,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 700),
+                      curve: Curves.easeInOut,
+                      height: isExpanded ? 0.0 : 50.0,
+                      width: isExpanded ? 0.0 : 50.0,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.black,
                         shape: BoxShape.circle,
                       ),
-                      child: Center(
-                        child: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isExpanded = !isExpanded;
-                              textSize = 45.0;
-                            });
-                          },
-                          icon: Icon(
-                            isExpanded
-                                ? Icons.arrow_back_ios
-                                : Icons.arrow_forward_ios,
-                            color: Colors.deepPurple,
-                            size: isExpanded ? 20 : 20,
+                      child: const Center(
+                        child: AnimatedDefaultTextStyle(
+                          duration: Duration(milliseconds: 700),
+                          curve: Curves.easeInOut,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2.0,
+                          ),
+                          child: Text(
+                            'iP',
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AnimatedDefaultTextStyle(
-                        duration: const Duration(milliseconds: 700),
-                        curve: Curves.easeInOut,
-                        style: TextStyle(
-                          color: themeNotifier.isDarkMode
-                              ? Colors.white
-                              : Colors.black,
-                          fontSize: textSize,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        child: Text(
-                          _demoTitles[_selectedIndex],
-                        ),
-                      ),
-                    ],
-                  ),
+                  const SizedBox(height: 16.0 * 2),
                   Expanded(
-                    child: Center(
-                      child: Text(
-                        'Your Content Here...',
-                        style: TextStyle(
-                          color: themeNotifier.isDarkMode
-                              ? Colors.white
-                              : Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                    child: ListView.builder(
+                      itemCount: demoImages.length,
+                      shrinkWrap: true,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = index;
+                              textSize = 60.0;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 16.0 * 2, left: 10.0),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: isExpanded
+                                    ? _selectedIndex == index
+                                        ? Colors.deepPurple.withOpacity(0.3)
+                                        : Colors.transparent
+                                    : Colors.transparent,
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(30.0),
+                                  bottomLeft: Radius.circular(30.0),
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 16.0),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      demoImages[index],
+                                      height: isExpanded ? 20 : 20,
+                                      width: isExpanded ? 20 : 20,
+                                      color: isExpanded
+                                          ? _selectedIndex == index
+                                              ? Colors.black
+                                              : Colors.grey
+                                          : Colors.grey,
+                                    ),
+                                    const SizedBox(width: 16.0),
+                                    if (isExpanded)
+                                      Expanded(
+                                        child: AnimatedOpacity(
+                                          duration:
+                                              const Duration(milliseconds: 500),
+                                          opacity: isExpanded ? 1.0 : 0.0,
+                                          child: AnimatedDefaultTextStyle(
+                                            duration: const Duration(
+                                                milliseconds: 500),
+                                            curve: Curves.easeInOut,
+                                            overflow: TextOverflow.ellipsis,
+                                            softWrap: true,
+                                            style: TextStyle(
+                                              color: _selectedIndex == index
+                                                  ? Colors.black
+                                                  : Colors.black54,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: isExpanded ? 15 : 0,
+                                            ),
+                                            child: Text(
+                                              demoTitles[index],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                    height: 150.0,
+                    width: isExpanded ? 220.0 : 60.0,
+                    margin: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: ListView.builder(
+                      itemCount: 4,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            left: isExpanded ? 16.0 : 20.0,
+                            top: 10.0,
+                          ),
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 10.0,
+                                backgroundImage:
+                                    NetworkImage(userImages[index]),
+                              ),
+                              const SizedBox(width: 16.0),
+                              if (isExpanded)
+                                Expanded(
+                                  child: AnimatedDefaultTextStyle(
+                                    duration: const Duration(milliseconds: 700),
+                                    curve: Curves.easeInOut,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: isExpanded ? 13 : 0,
+                                    ),
+                                    child: Text(
+                                      userNames[index],
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  AnimatedAlign(
+                    duration: const Duration(milliseconds: 800),
+                    curve: Curves.easeInOut,
+                    alignment:
+                        isExpanded ? Alignment.bottomRight : Alignment.center,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        height: 50.0,
+                        width: 50.0,
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isExpanded = !isExpanded;
+                                textSize = 45.0;
+                              });
+                            },
+                            icon: Icon(
+                              isExpanded
+                                  ? Icons.arrow_back_ios
+                                  : Icons.arrow_forward_ios,
+                              color: Colors.deepPurple,
+                              size: isExpanded ? 20 : 20,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -357,8 +318,47 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AnimatedDefaultTextStyle(
+                      duration: const Duration(milliseconds: 700),
+                      curve: Curves.easeInOut,
+                      style: TextStyle(
+                        color: themeNotifier.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
+                        fontSize: textSize,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      child: Text(
+                        demoTitles[_selectedIndex],
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          'Your Content Here...',
+                          style: TextStyle(
+                            color: themeNotifier.isDarkMode
+                                ? Colors.white
+                                : Colors.black,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
