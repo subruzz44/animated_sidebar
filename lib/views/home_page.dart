@@ -201,6 +201,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                     const SizedBox(width: 16.0),
                                     if (isExpanded)
+                                    //chek
                                       Expanded(
                                         child: AnimatedOpacity(
                                           duration:
